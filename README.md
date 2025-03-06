@@ -1,16 +1,69 @@
-# pt_enak_sekali_test
+# PT Enak Sekali Test
 
-A new Flutter project.
+Aplikasi Flutter ini menerapkan arsitektur **Domain Driven Design (DDD)** dan menggunakan Fake API dari [DummyJSON](https://dummyjson.com/products) untuk menampilkan daftar produk.
 
-## Getting Started
+## Fitur
 
-This project is a starting point for a Flutter application.
+- **Splash Screen** saat aplikasi dibuka.
+- **Infinite Scroll**: Data produk dimuat secara bertahap dengan limit 10 produk setiap fetch.
+- **Search Product**: Pengguna dapat mencari produk berdasarkan nama.
+- **Filter by Category**: Pengguna dapat memfilter produk berdasarkan kategori.
 
-A few resources to get you started if this is your first Flutter project:
+## Teknologi yang Digunakan
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter**: Framework utama untuk membangun aplikasi.
+- **Dart**: Bahasa pemrograman yang digunakan.
+- **Dio/Http**: Untuk melakukan HTTP request ke DummyJSON API.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Arsitektur Domain Driven Design (DDD)
+
+Aplikasi ini dibangun dengan pendekatan DDD yang memisahkan kode menjadi beberapa lapisan utama:
+
+1. **Domain**: Berisi model entitas, repository abstrak, dan logika bisnis.
+   - `entities/` → Model entitas seperti `product.dart`
+   - `repositories/` → Abstraksi repository seperti `product_repository.dart`
+   - `usecases/` → Logika bisnis seperti `get_products.dart` dan `search_products.dart`
+
+2. **Data**: Berisi implementasi repository dan komunikasi dengan API.
+   - `data_sources/` → Data sumber seperti `remote_data_source.dart`
+   - `repositories/` → Implementasi repository seperti `product_repository_impl.dart`
+
+3. **Presentation**: UI, state management, dan event handlers.
+   - `pages/` → Halaman UI seperti `product_list_page.dart`
+   - `widgets/` → Komponen UI seperti `product_grid_item.dart`
+
+4. **Main Entry Point**:
+   - `main.dart` → Entry point utama aplikasi.
+
+## Cara Menjalankan Aplikasi
+
+1. Clone repositori ini:
+   ```sh
+   git clone https://github.com/andrisilaban/pt_enak_sekali_test.git
+   cd pt_enak_sekali_test
+   ```
+2. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+3. Jalankan aplikasi di emulator atau perangkat fisik:
+   ```sh
+   flutter run
+   ```
+
+## API Endpoint
+
+Aplikasi ini menggunakan API dari [DummyJSON](https://dummyjson.com/products) dengan endpoint utama:
+
+- **GET** `/products` → Mendapatkan daftar produk.
+- **GET** `/products/search?q=keyword` → Mencari produk berdasarkan kata kunci.
+- **GET** `/products/category/category_name` → Filter produk berdasarkan kategori.
+
+## Kontributor
+
+Jika ingin berkontribusi, silakan buat pull request atau laporkan issue melalui GitHub.
+
+---
+
+🚀 **Happy Coding!**
+
